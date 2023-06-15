@@ -1,29 +1,29 @@
-<h3><b>Тестування</b></h3>
+<h3><b>Testing Rest Api</b></h3>
 
 --------------
-<i>Студент</i> реєструється в системі і після реєстрації може пройти один або кілька Тестів.
-В системі існує перелік тестів з Предметів. Для переліку необхідно реалізувати:
-- вибір тестів з певного предмету;
-- сортування тестів за назвою;
-- сортування тестів за складністю;
-- сортування тестів за кількістю запитань.
+<i>The student</i> registers in the system and after registration can take one or more Tests.
+The system has a list of tests by Subjects. For the list is implemented:
+- selection of tests for a subject;
+- sorting tests by name;
+- sorting tests by difficulty;
+- sorting tests by the quantity of questions.
 
 
-  Студент обирає тест і проходить його. На проходження тесту виділяється певний проміжок часу, який встановлюється для кожного тесту окремо.
-  Студент має особистий кабінет, в якому відображена реєстраційна інформація, а також список тестів, що пройдені, із результатами.
+  <i>The student</i> chooses a test and passes it. A certain period of time is allocated for taking the test, which is set for each test individually.
+  The student has a personal account, which displays registration information and a list of passed tests with results.
 --------------
-<i>Адміністратор системи</i>:
-- створює, видаляє або редагує тести;
-- блокує, розблоковує, редагує користувача.
+<i>System administrator</i>:
+- creates, deletes or edits tests;
+- blocks, unblocks, edits a user.
 
-При створенні тесту <i>адміністратор</i>:
-- встановлює час проходження тесту;
-- складність тесту;
-- додає Питання в тест.
+When creating a test, the <i>administrator</i>:
+- sets the testing time;
+- sets the difficulty of the test;
+- adds questions and answers to the test.
 
 
-  Питання може мати одну або кілька правильних відповідей.
-  Результатом проходження тесту є відсоток питань, на які студент правильно відповів по відношенню
-  до загальної кількості питань (вважається, що студент правильно відповів на питання, якщо його відповідь
-  співпадає в точності з правильними варіантами відповідей).
+  A question can have one or more correct answers.
+  The result of the test is the percentage of questions that the student answered correctly in 
+  relation to the total number of questions (a student is considered to have answered a question 
+  correctly if his answer matches exactly the correct answer options)
 --------------
