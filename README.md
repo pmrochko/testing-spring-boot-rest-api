@@ -36,7 +36,7 @@ git clone https://github.com/pmrochko/testing-spring-boot-rest-api.git
 ```
 **2. Create PostgreSQL database**
 
-**3. Change mysql username and password as per your installation**
+**3. Change postgres username and password as per your installation**
 
 + open `src/main/resources/application.yml`
 + change `spring.datasource.url` and `spring.datasource.username` and `spring.datasource.password` as per your postrges installation
