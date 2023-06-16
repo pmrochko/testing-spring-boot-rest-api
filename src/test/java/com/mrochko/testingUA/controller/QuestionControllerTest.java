@@ -2,7 +2,6 @@ package com.mrochko.testingUA.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mrochko.testingUA.dto.QuestionDTO;
-import com.mrochko.testingUA.dto.TestDTO;
 import com.mrochko.testingUA.service.QuestionService;
 import com.mrochko.testingUA.util.QuestionDataTestUtil;
 import org.junit.jupiter.api.Test;
@@ -44,14 +43,20 @@ class QuestionControllerTest {
     @MockBean
     QuestionService questionService;
 
+    public static final String QUESTION_API_URL = TestControllerTest.TEST_API_URL +
+            "/{testId}/questions";
+    public static final String QUESTION_API_WITHOUT_TEST_ID_URL = TestControllerTest.TEST_API_URL +
+            "/questions";
+
     @Test
     void testCreateQuestionForTest() throws Exception {
+        Long testId = 222L;
         QuestionDTO questionDTO = QuestionDataTestUtil.createQuestionDTO();
         when(questionService.createQuestion(anyLong(), any(QuestionDTO.class))).thenReturn(questionDTO);
 
         String jsonRequestBody = new ObjectMapper().writeValueAsString(questionDTO);
 
-        mockMvc.perform(post("/api/v1/test/{testId}/question", 222L)
+        mockMvc.perform(post(QUESTION_API_URL, testId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonRequestBody))
                 .andDo(print())
@@ -63,10 +68,11 @@ class QuestionControllerTest {
 
     @Test
     void testGetAllQuestionsForTest() throws Exception {
+        Long testId = 987L;
         List<QuestionDTO> questions = QuestionDataTestUtil.createQuestionDtoList();
         when(questionService.getAllQuestions(anyLong())).thenReturn(questions);
 
-        ResultActions result = mockMvc.perform(get("/api/v1/test/{testId}/question", 987L))
+        ResultActions result = mockMvc.perform(get(QUESTION_API_URL, testId))
                 .andDo(print())
                 .andExpect(status().isOk());
 
@@ -83,7 +89,7 @@ class QuestionControllerTest {
         Long questionId = 333L;
         doNothing().when(questionService).deleteQuestion(anyLong());
 
-        mockMvc.perform(delete("/api/v1/test/question/{questionId}", questionId))
+        mockMvc.perform(delete(QUESTION_API_WITHOUT_TEST_ID_URL + "/{questionId}", questionId))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").value(questionId.intValue()));
@@ -96,7 +102,7 @@ class QuestionControllerTest {
 
         String jsonRequestBody = new ObjectMapper().writeValueAsString(questionDTO);
 
-        mockMvc.perform(put("/api/v1/test/question/{questionId}", questionDTO.getId())
+        mockMvc.perform(put(QUESTION_API_WITHOUT_TEST_ID_URL + "/{questionId}", questionDTO.getId())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonRequestBody))
                 .andDo(print())

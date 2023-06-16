@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "702fe831-9a1d-4bc0-848d-38ce14afe4c3",
-		"name": "Testing",
+		"name": "Testing-Spring-Boot-Rest-Api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "23939174"
 	},
@@ -24,7 +24,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/user",
+							"raw": "http://localhost:8080/api/v1/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -33,7 +33,7 @@
 							"path": [
 								"api",
 								"v1",
-								"user"
+								"users"
 							]
 						}
 					},
@@ -57,7 +57,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/user",
+							"raw": "http://localhost:8080/api/v1/users",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -66,7 +66,7 @@
 							"path": [
 								"api",
 								"v1",
-								"user"
+								"users"
 							]
 						}
 					},
@@ -78,7 +78,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/user/1",
+							"raw": "http://localhost:8080/api/v1/users/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -87,7 +87,7 @@
 							"path": [
 								"api",
 								"v1",
-								"user",
+								"users",
 								"1"
 							]
 						}
@@ -109,7 +109,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/user/1",
+							"raw": "http://localhost:8080/api/v1/users/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -118,7 +118,7 @@
 							"path": [
 								"api",
 								"v1",
-								"user",
+								"users",
 								"1"
 							]
 						}
@@ -131,7 +131,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/user/4/historyOfTests",
+							"raw": "http://localhost:8080/api/v1/users/4/historyOfTests",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -140,7 +140,7 @@
 							"path": [
 								"api",
 								"v1",
-								"user",
+								"users",
 								"4",
 								"historyOfTests"
 							]
@@ -159,7 +159,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/test/18",
+							"raw": "http://localhost:8080/api/v1/tests/18",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -168,7 +168,7 @@
 							"path": [
 								"api",
 								"v1",
-								"test",
+								"tests",
 								"18"
 							]
 						}
@@ -190,7 +190,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/test/",
+							"raw": "http://localhost:8080/api/v1/tests/",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -199,7 +199,7 @@
 							"path": [
 								"api",
 								"v1",
-								"test",
+								"tests",
 								""
 							]
 						}
@@ -212,7 +212,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/test",
+							"raw": "http://localhost:8080/api/v1/tests",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -221,7 +221,7 @@
 							"path": [
 								"api",
 								"v1",
-								"test"
+								"tests"
 							]
 						}
 					},
@@ -242,7 +242,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/test/15",
+							"raw": "http://localhost:8080/api/v1/tests/15",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -251,7 +251,7 @@
 							"path": [
 								"api",
 								"v1",
-								"test",
+								"tests",
 								"15"
 							]
 						}
@@ -264,7 +264,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/test/25/start",
+							"raw": "http://localhost:8080/api/v1/tests/25/start",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -273,7 +273,7 @@
 							"path": [
 								"api",
 								"v1",
-								"test",
+								"tests",
 								"25",
 								"start"
 							]
@@ -296,7 +296,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/test/25/submit",
+							"raw": "http://localhost:8080/api/v1/tests/25/submit",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -305,7 +305,7 @@
 							"path": [
 								"api",
 								"v1",
-								"test",
+								"tests",
 								"25",
 								"submit"
 							]
@@ -324,7 +324,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/test/25/question",
+							"raw": "http://localhost:8080/api/v1/tests/25/questions",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -333,9 +333,9 @@
 							"path": [
 								"api",
 								"v1",
-								"test",
+								"tests",
 								"25",
-								"question"
+								"questions"
 							]
 						}
 					},
@@ -347,7 +347,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/test/question/16",
+							"raw": "http://localhost:8080/api/v1/tests/questions/16",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -356,8 +356,8 @@
 							"path": [
 								"api",
 								"v1",
-								"test",
-								"question",
+								"tests",
+								"questions",
 								"16"
 							]
 						}
@@ -379,7 +379,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/test/25/question",
+							"raw": "http://localhost:8080/api/v1/tests/25/questions",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -388,9 +388,9 @@
 							"path": [
 								"api",
 								"v1",
-								"test",
+								"tests",
 								"25",
-								"question"
+								"questions"
 							]
 						}
 					},
@@ -411,7 +411,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/test/question/20",
+							"raw": "http://localhost:8080/api/v1/tests/questions/20",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -420,8 +420,8 @@
 							"path": [
 								"api",
 								"v1",
-								"test",
-								"question",
+								"tests",
+								"questions",
 								"20"
 							]
 						}
@@ -439,7 +439,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/test/question/20/answer",
+							"raw": "http://localhost:8080/api/v1/tests/questions/20/answers",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -448,10 +448,10 @@
 							"path": [
 								"api",
 								"v1",
-								"test",
-								"question",
+								"tests",
+								"questions",
 								"20",
-								"answer"
+								"answers"
 							]
 						}
 					},
@@ -463,7 +463,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/v1/test/question/answer/17",
+							"raw": "http://localhost:8080/api/v1/tests/questions/answers/17",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -472,9 +472,9 @@
 							"path": [
 								"api",
 								"v1",
-								"test",
-								"question",
-								"answer",
+								"tests",
+								"questions",
+								"answers",
 								"17"
 							]
 						}
@@ -496,7 +496,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/test/question/29/answer",
+							"raw": "http://localhost:8080/api/v1/tests/questions/29/answers",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -505,10 +505,10 @@
 							"path": [
 								"api",
 								"v1",
-								"test",
-								"question",
+								"tests",
+								"questions",
 								"29",
-								"answer"
+								"answers"
 							]
 						}
 					},
@@ -529,7 +529,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/v1/test/question/answer/23",
+							"raw": "http://localhost:8080/api/v1/tests/questions/answers/23",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -538,9 +538,9 @@
 							"path": [
 								"api",
 								"v1",
-								"test",
-								"question",
-								"answer",
+								"tests",
+								"questions",
+								"answers",
 								"23"
 							]
 						}

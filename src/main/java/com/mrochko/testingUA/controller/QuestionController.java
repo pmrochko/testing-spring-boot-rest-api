@@ -18,12 +18,12 @@ import java.util.List;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/test")
+@RequestMapping("/api/v1/tests")
 public class QuestionController {
 
     private final QuestionService questionService;
 
-    @PostMapping("/{testId}/question")
+    @PostMapping("/{testId}/questions")
     @ResponseStatus(HttpStatus.CREATED)
     public QuestionDTO createQuestionForTest(@Positive @PathVariable Long testId,
                                              @Valid @RequestBody QuestionDTO questionDTO) {
@@ -31,14 +31,14 @@ public class QuestionController {
         return questionService.createQuestion(testId, questionDTO);
     }
 
-    @GetMapping("/{testId}/question")
+    @GetMapping("/{testId}/questions")
     @ResponseStatus(HttpStatus.OK)
     public List<QuestionDTO> getAllQuestionsForTest(@Positive @PathVariable Long testId) {
         log.info("Getting all questions for a test with id: {}", testId);
         return questionService.getAllQuestions(testId);
     }
 
-    @DeleteMapping("/question/{questionId}")
+    @DeleteMapping("/questions/{questionId}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Long> deleteQuestion(@Positive @PathVariable Long questionId) {
         log.info("Deleting a question with id: {}", questionId);
@@ -48,10 +48,10 @@ public class QuestionController {
         return new ResponseEntity<>(questionId, HttpStatus.OK);
     }
 
-    @PutMapping("/question/{questionId}")
+    @PutMapping("/questions/{questionId}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Long> updateQuestion(@Positive @PathVariable Long questionId,
-                                      @Valid @RequestBody QuestionDTO questionDTO) {
+                                               @Valid @RequestBody QuestionDTO questionDTO) {
         log.info("Updating a question with id: {}", questionDTO);
         questionService.updateQuestion(questionId, questionDTO);
 

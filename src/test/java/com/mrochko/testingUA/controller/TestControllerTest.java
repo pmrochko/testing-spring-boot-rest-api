@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mrochko.testingUA.dto.AnswersToQuestionDTO;
 import com.mrochko.testingUA.dto.HistoryOfTestDTO;
 import com.mrochko.testingUA.dto.TestDTO;
-import com.mrochko.testingUA.dto.UserDTO;
 import com.mrochko.testingUA.mapper.HistoryOfTestMapper;
 import com.mrochko.testingUA.model.HistoryOfTest;
 import com.mrochko.testingUA.model.User;
@@ -53,6 +52,8 @@ class TestControllerTest {
     @MockBean
     TestService testService;
 
+    public static final String TEST_API_URL = "/api/v1/tests";
+
     @Test
     void testCreateTest() throws Exception {
         TestDTO testEntity = TestDataTestUtil.createTestDTO();
@@ -60,7 +61,7 @@ class TestControllerTest {
 
         String jsonRequestBody = new ObjectMapper().writeValueAsString(testEntity);
 
-        mockMvc.perform(post("/api/v1/test")
+        mockMvc.perform(post(TEST_API_URL)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonRequestBody))
                 .andDo(print())
@@ -79,7 +80,7 @@ class TestControllerTest {
         List<TestDTO> tests = TestDataTestUtil.createTestDtoList();
         when(testService.getAllTests(null, null)).thenReturn(tests);
 
-        ResultActions result = mockMvc.perform(get("/api/v1/test"))
+        ResultActions result = mockMvc.perform(get(TEST_API_URL))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(tests.size())));
@@ -101,7 +102,7 @@ class TestControllerTest {
         Long testId = 133L;
         doNothing().when(testService).deleteTest(anyLong());
 
-        mockMvc.perform(delete("/api/v1/test/{testId}", testId))
+        mockMvc.perform(delete(TEST_API_URL + "/{testId}", testId))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").value(testId.intValue()));
@@ -115,7 +116,7 @@ class TestControllerTest {
 
         String jsonRequestBody = new ObjectMapper().writeValueAsString(testDTO);
 
-        mockMvc.perform(put("/api/v1/test/{testId}", testDTO.getId())
+        mockMvc.perform(put(TEST_API_URL + "/{testId}", testDTO.getId())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonRequestBody))
                 .andDo(print())
@@ -129,7 +130,7 @@ class TestControllerTest {
         TestDTO testDTO = TestDataTestUtil.createTestDTO();
         when(testService.startTest(any(UserDetails.class), anyLong())).thenReturn(testDTO);
 
-        mockMvc.perform(post("/api/v1/test/{testId}/start", 456L))
+        mockMvc.perform(post(TEST_API_URL + "/{testId}/start", 456L))
                 .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id").value(testDTO.getId()))
@@ -138,7 +139,7 @@ class TestControllerTest {
                 .andExpect(jsonPath("$.description").value(testDTO.getDescription()))
                 .andExpect(jsonPath("$.testDifficulty").value(testDTO.getTestDifficulty().name()))
                 .andExpect(jsonPath("$.minutes").value(testDTO.getMinutes()))
-                .andExpect(jsonPath("$.questionList", hasSize(testDTO.getQuestionList().size())));;
+                .andExpect(jsonPath("$.questionList", hasSize(testDTO.getQuestionList().size())));
     }
 
     @Test
@@ -155,7 +156,7 @@ class TestControllerTest {
         String jsonRequestBody = new ObjectMapper().writeValueAsString(requestAnswers);
         when(testService.finishTest(any(UserDetails.class), anyLong(), any())).thenReturn(historyOfTestDTO);
 
-        mockMvc.perform(put("/api/v1/test/{testId}/submit", 998L)
+        mockMvc.perform(put(TEST_API_URL + "/{testId}/submit", 998L)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonRequestBody))
                 .andDo(print())

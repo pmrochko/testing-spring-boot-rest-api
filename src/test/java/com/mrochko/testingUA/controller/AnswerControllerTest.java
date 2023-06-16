@@ -2,7 +2,6 @@ package com.mrochko.testingUA.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mrochko.testingUA.dto.AnswerDTO;
-import com.mrochko.testingUA.dto.QuestionDTO;
 import com.mrochko.testingUA.service.AnswerService;
 import com.mrochko.testingUA.util.AnswerDataTestUtil;
 import org.junit.jupiter.api.Test;
@@ -43,14 +42,20 @@ class AnswerControllerTest {
     @MockBean
     AnswerService answerService;
 
+    private static final String ANSWER_API_URL = QuestionControllerTest.QUESTION_API_WITHOUT_TEST_ID_URL +
+            "/{questionId}/answers";
+    private static final String ANSWER_API_WITHOUT_QUESTION_ID_URL = QuestionControllerTest.QUESTION_API_WITHOUT_TEST_ID_URL +
+            "/answers";
+
     @Test
     void testCreateAnswerForQuestion() throws Exception {
+        Long questionId = 123L;
         AnswerDTO answerDTO = AnswerDataTestUtil.createAnswerDTO();
         when(answerService.createAnswer(anyLong(), any(AnswerDTO.class))).thenReturn(answerDTO);
 
         String jsonRequestBody = new ObjectMapper().writeValueAsString(answerDTO);
 
-        mockMvc.perform(post("/api/v1/test/question/{questionId}/answer", 123L)
+        mockMvc.perform(post(ANSWER_API_URL, questionId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonRequestBody))
                 .andDo(print())
@@ -62,11 +67,12 @@ class AnswerControllerTest {
 
     @Test
     void testGetAllAnswersForQuestion() throws Exception {
+        Long questionId = 456L;
         List<AnswerDTO> answers = AnswerDataTestUtil.createAnswerDtoList();
         when(answerService.getAllAnswers(anyLong())).thenReturn(answers);
 
         ResultActions result = mockMvc
-                .perform(get("/api/v1/test/question/{questionId}/answer", 456L))
+                .perform(get(ANSWER_API_URL, questionId))
                 .andDo(print())
                 .andExpect(status().isOk());
 
@@ -83,7 +89,7 @@ class AnswerControllerTest {
         Long answerId = 789L;
         doNothing().when(answerService).deleteAnswer(anyLong());
 
-        mockMvc.perform(delete("/api/v1/test/question/answer/{answerId}", answerId))
+        mockMvc.perform(delete(ANSWER_API_WITHOUT_QUESTION_ID_URL + "/{answerId}", answerId))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").value(answerId.intValue()));
@@ -96,7 +102,7 @@ class AnswerControllerTest {
 
         String jsonRequestBody = new ObjectMapper().writeValueAsString(answerDTO);
 
-        mockMvc.perform(put("/api/v1/test/question/answer/{answerId}", answerDTO.getId())
+        mockMvc.perform(put(ANSWER_API_WITHOUT_QUESTION_ID_URL + "/{answerId}", answerDTO.getId())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonRequestBody))
                 .andDo(print())

@@ -2,7 +2,6 @@ package com.mrochko.testingUA.util;
 
 import com.mrochko.testingUA.dto.AnswerDTO;
 import com.mrochko.testingUA.dto.AnswersToQuestionDTO;
-import com.mrochko.testingUA.dto.QuestionDTO;
 import com.mrochko.testingUA.dto.TestDTO;
 import com.mrochko.testingUA.mapper.TestMapper;
 import com.mrochko.testingUA.model.Test;

@@ -51,6 +51,8 @@ class UserControllerTest {
     @MockBean
     private HistoryOfTestService historyService;
 
+    private static final String USER_API_URL = "/api/v1/users";
+
     @Test
     void testCreateUser() throws Exception {
         UserDTO userDTO = UserDataTestUtil.createUserDTO();
@@ -63,7 +65,7 @@ class UserControllerTest {
                 "\"access\":null,\"password\":\"TestPassword123\"," +
                 "\"repeatPassword\":\"TestPassword123\"}";
 
-        mockMvc.perform(post("/api/v1/user")
+        mockMvc.perform(post(USER_API_URL)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonRequestBody))
                 .andDo(print())
@@ -80,7 +82,7 @@ class UserControllerTest {
         List<UserDTO> users = UserDataTestUtil.createUserDtoList();
         when(userService.getAllUsers()).thenReturn(users);
 
-        ResultActions result = mockMvc.perform(get("/api/v1/user"))
+        ResultActions result = mockMvc.perform(get(USER_API_URL))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(users.size())));
@@ -102,7 +104,7 @@ class UserControllerTest {
         UserDTO userDTO = UserDataTestUtil.createUserDTO();
         when(userService.getUserByID(anyLong())).thenReturn(userDTO);
 
-        mockMvc.perform(get("/api/v1/user/{userId}", 21L))
+        mockMvc.perform(get(USER_API_URL + "/{userId}", 21L))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(userDTO.getId()))
@@ -124,7 +126,7 @@ class UserControllerTest {
 
         String jsonRequestBody = new ObjectMapper().writeValueAsString(userDTO);
 
-        mockMvc.perform(put("/api/v1/user/{userId}", userDTO.getId())
+        mockMvc.perform(put(USER_API_URL + "/{userId}", userDTO.getId())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(jsonRequestBody))
                 .andDo(print())
@@ -137,7 +139,7 @@ class UserControllerTest {
         List<HistoryOfTestDTO> historyList = HistoryOfTestDataTestUtil.createHistoryOfTestDtoList();
         when(historyService.getHistoryOfTests(anyLong())).thenReturn(historyList);
 
-        ResultActions result = mockMvc.perform(get("/api/v1/user/{userId}/historyOfTests", 111L))
+        ResultActions result = mockMvc.perform(get(USER_API_URL + "/{userId}/historyOfTests", 111L))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(historyList.size())));

@@ -18,12 +18,12 @@ import java.util.List;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/test/question")
+@RequestMapping("/api/v1/tests/questions")
 public class AnswerController {
 
     private final AnswerService answerService;
 
-    @PostMapping("/{questionId}/answer")
+    @PostMapping("/{questionId}/answers")
     @ResponseStatus(HttpStatus.CREATED)
     public AnswerDTO createAnswerForQuestion(@Positive @PathVariable Long questionId,
                                              @Valid @RequestBody AnswerDTO answerDTO) {
@@ -31,14 +31,14 @@ public class AnswerController {
         return answerService.createAnswer(questionId, answerDTO);
     }
 
-    @GetMapping("/{questionId}/answer")
+    @GetMapping("/{questionId}/answers")
     @ResponseStatus(HttpStatus.OK)
     public List<AnswerDTO> getAllAnswersForQuestion(@Positive @PathVariable Long questionId) {
         log.info("Getting all answer for a question with id: {}", questionId);
         return answerService.getAllAnswers(questionId);
     }
 
-    @DeleteMapping("/answer/{answerId}")
+    @DeleteMapping("/answers/{answerId}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Long> deleteAnswer(@Positive @PathVariable Long answerId) {
         log.info("Deleting a answer with id: {}", answerId);
@@ -48,7 +48,7 @@ public class AnswerController {
         return new ResponseEntity<>(answerId, HttpStatus.OK);
     }
 
-    @PutMapping("/answer/{answerId}")
+    @PutMapping("/answers/{answerId}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Long> updateAnswer(@Positive @PathVariable Long answerId,
                                   @Valid @RequestBody AnswerDTO answerDTO) {

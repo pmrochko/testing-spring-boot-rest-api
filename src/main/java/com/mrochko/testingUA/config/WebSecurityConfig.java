@@ -39,15 +39,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/v1/user").permitAll()             // registration
-                .antMatchers(HttpMethod.PUT, "/api/v1/user/{userId}")
-                            .hasAnyRole("ADMIN", "STUDENT")                      // update user (additional security in UserService#updateUser)
-                .antMatchers(HttpMethod.GET, "/api/v1/test").permitAll()              // list of tests
-                .antMatchers("/api/v1/user/{userId}/historyOfTests").hasAnyRole("ADMIN", "STUDENT") // test passing
-                .antMatchers("/api/v1/test/{testId}/start").hasAnyRole("ADMIN", "STUDENT") // test passing
-                .antMatchers("/api/v1/test/{testId}/submit").hasAnyRole("ADMIN", "STUDENT") // test passing
-                .antMatchers("/api/v1/user/**").hasRole("ADMIN")                      // actions with accounts
-                .antMatchers("/api/v1/test/**").hasRole("ADMIN")                      // actions with editing a test
+                .antMatchers(HttpMethod.POST, "/api/v1/users").permitAll()            // registration
+                .antMatchers(HttpMethod.PUT, "/api/v1/users/{userId}")
+                            .hasAnyRole("ADMIN", "STUDENT")                      // update user (additional logic in UserService#updateUser)
+                .antMatchers(HttpMethod.GET, "/api/v1/tests").permitAll()             // list of tests
+                .antMatchers("/api/v1/users/{userId}/historyOfTests").hasAnyRole("ADMIN", "STUDENT") // test passing
+                .antMatchers("/api/v1/tests/{testId}/start").hasAnyRole("ADMIN", "STUDENT") // test passing
+                .antMatchers("/api/v1/tests/{testId}/submit").hasAnyRole("ADMIN", "STUDENT") // test passing
+                .antMatchers("/api/v1/users/**").hasRole("ADMIN")                      // actions with accounts
+                .antMatchers("/api/v1/tests/**").hasRole("ADMIN")                      // actions with editing a test
                 .antMatchers("/api/v1/**").permitAll()                                // other endpoints
                 .and().formLogin();
 
