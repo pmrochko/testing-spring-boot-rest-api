@@ -57,7 +57,7 @@ The app defines following CRUD APIs.
 | Method | Url | Decription | Request Parameters | 
 | ------ | --- | ---------- | ------------------ |
 | POST   | /login | Log in | login, password |
-| POST   | /logout | Log out | |
+| GET    | /logout | Log out | |
 
 ### Users
 
