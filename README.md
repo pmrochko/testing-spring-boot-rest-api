@@ -29,7 +29,7 @@ When creating a test, the <i>administrator</i>:
 
 ## Steps to Setup
 
-**1. Clone the application**
+**1. Clone the repository**
 
 ```bash
 git clone https://github.com/pmrochko/testing-spring-boot-rest-api.git
